@@ -42,7 +42,6 @@ public class DiceRoll {
 	
 	
 	public static int generateRandomDieRollMathRandom (int sides) {
-		//seed doesn't really matter. 
 		double factor = Math.random(); 
 		double rawProbability = sides * factor; 
 		if (Math.ceil(rawProbability) - rawProbability >= 0.5) {
@@ -51,8 +50,9 @@ public class DiceRoll {
 			rawProbability = Math.floor(rawProbability); 
 		}
 		if (rawProbability < 0.5) {
-			rawProbability = (double) sides; /* this is kind of an equalizer, because 1-5 have twice the probability as 0 or 6, 
-		and we don't want 0, so converting 0 to 6 will double 6's probability, returning everything equal */
+			rawProbability = (double) sides; /* this is an equalizer, because 1-(sides - 1) have twice the probability as
+			 0 or the highest number, and we don't want 0, so converting 0 to 6 will double 6's probability, and remove
+			 0, making everything equal */
 		}
 		return (int) rawProbability; 
 		
